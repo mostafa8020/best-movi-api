@@ -1,0 +1,45 @@
+services:
+  best-movie-app:
+    container_name: best-movie-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - backend-network
+    depends_on:
+      - best-movie-db
+      - redis
+    env_file:
+      - .env
+
+  best-movie-db:
+    container_name: best-movie-db
+    image: postgres:latest
+    restart: always
+    ports:
+      - '5432:5432'
+    networks:
+      - backend-network
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: best-movie-db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - '6379:6379'
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    driver: bridge
+
+volumes:
+  db-data:
