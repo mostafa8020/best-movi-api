@@ -213,3 +213,12 @@ The project is structured into several modules, each responsible for a specific 
     - 201: The database has been successfully seeded.
     - 500: Error occurred while seeding the database.
 
+## Running Tests
+
+You can run tests and generate coverage reports using the following commands:
+
+```bash
+npm run test
+npm run test:watch
+npm run test:cov
+
