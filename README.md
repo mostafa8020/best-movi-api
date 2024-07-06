@@ -22,7 +22,11 @@ Best Movie Api is the server-side of the Best Movie Api application, developed u
    ```bash
    cd best-movie-api
    ```
-3. **Start Application**:
+3. **Copy the Environment Variables File**:
+   ```bash
+   cp .env.example .env
+   ```
+4. **Start Application**:
    ```bash
    docker compose up 
    ```
